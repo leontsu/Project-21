@@ -16,7 +16,7 @@ function setup() {
   bullet = createSprite (50,200,50,10);
   wall = createSprite (1000,200,thickness,height/2);
 
-  wall.shapeColor = color(80,80,80);
+  wall.shapeColor = color(255);
 
   bullet.velocityX = speed;
 
@@ -25,32 +25,12 @@ function setup() {
 function draw() {
   background(0,0,0);  
 
-  if (wall.x - bullet.x < (bullet.width+wall.width)/2)
-  {
-    bullet.velocityX = 0;
-    deformation = 0.5 * weight * speed * speed/22500;
-
-    if (deformation > 180)
-    {
-      bullet.shapeColor=color(225,0,0);
-    }
-
-    if (deformation < 180 && deformation > 100)
-    {
-      bullet.shapeColor = color(230,230,0);
-    }
-
-    if (deformation<100)
-    {
-      bullet.shapeColor = color(0,255,0);
-    }
-  }
-
 if (hasCollided(wall,bullet))
 {
-  bullet.velocityX = 0;
+ 
   var damage = 0.5 * weight * speed * speed/(thickness * thickness * thickness);
 
+  console.log(damage);
 
   if (damage > 10)
   {
@@ -61,6 +41,7 @@ if (hasCollided(wall,bullet))
   {
     wall.shapeColor = color(0,255,0);
   }
+  
 }
 
   drawSprites();
